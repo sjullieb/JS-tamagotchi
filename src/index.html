@@ -5,5 +5,40 @@
   </head>
   <body>
 
+    <div id="openingForm">
+      <h2>Tamagotchi Madness</h2>
+      <h4>All the pressures of parenting with none of the consequences!</h4>
+      <form id="gameStartForm">
+        Select your Tamagotchi's Name:
+        <br>
+        <input type="text" name="" id="inputName" required>
+        <br>
+        Select your Tamagotchi's birtdate (YYYY/MM/DD):
+        <br>
+        <input type="text" name="" id="inputDate" required>
+        <button type="submit">Create your Tamagotchi</button>
+      </form>
+    </div>
+
+    <div id="gameStart">
+      <p>Make sure to take care of <b><span class="tamagotchiName"></span></b>.
+      If it goes without food or sleep too long, it could DIE!</p>
+      <h5>Start Game?</h5>
+      <button id="gameStartButton">Start!</button>
+    </div>
+
+    <div id="tamagotchiHome">
+      <h3 class="tamagotchiName"></h3>
+      <h5>Hunger: <span id='tamagotchiHunger'></span></h5>
+      <h5>Tiredness: <span id='tamagotchiTiredness'></span></h5>
+    </div>
+
+
+
+      <div id="buttonContainer">
+
+      </div>
+
+
   </body>
 </html>
