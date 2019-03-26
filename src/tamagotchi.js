@@ -1,7 +1,8 @@
-export const lifeCycleTicks = [100, 300, 600, 900];
+import $ from 'jquery';
+export const lifeCycleTicks = [10, 20, 30, 40];
 export const lifeCycleName = ["Baby", "Child", "Teenager", "Adult"];
-export const dayDuration = 20;
-export const nightDuration = 5;
+export const dayDuration = 10;
+export const nightDuration = 2;
 
 export default class Tamagotchi {
   constructor(name, birthday) {
@@ -16,6 +17,8 @@ export default class Tamagotchi {
     this.snacks = 0;
     this.droppings = 0;
     this.tiredness = 0;
+    this.sick = false;
+    this.dead = false;
   }
 
   start() {
@@ -25,7 +28,7 @@ export default class Tamagotchi {
       this.checkLifeCycle();
       this.increaseHunger();
       this.increaseTiredness();
-    }, 10000);
+    }, 1000);
   }
 
   pauseGame(){
@@ -48,9 +51,9 @@ export default class Tamagotchi {
   }
 
   increaseHunger() {
-    if(this.timeOfDay() % (dayDuration / 5) === 0 && this.hunger <= 5 && this.timeOfDay() < dayDuration) {
+    //if(this.timeOfDay() % (dayDuration / 5) === 0 && this.hunger <= 5 && this.timeOfDay() < dayDuration) {
       this.hunger++;
-    }
+    //}
   }
 
   feedSnack() {
@@ -58,13 +61,59 @@ export default class Tamagotchi {
   }
 
   feedMeal() {
-    this.hunger -= 2;
+    if (this.hunger >= 2) {
+      this.hunger -= 2;
+      setTimeout(() => {
+        this.droppings++;
+      }, 5000);
+    }
   }
 
   increaseTiredness() {
-    if(this.timeOfDay() % ((dayDuration + nightDuration) / 5) === 0) {
+    //if(this.timeOfDay() % ((dayDuration + nightDuration) / 5) === 0) {
       this.tiredness++;
+    //}
+  }
+
+  sleep() {
+      this.tiredness = 0;
+  }
+
+  getSick() {
+    let counter = 0;
+    if (this.tiredness >= 5) {
+      counter++;
+    }
+    if (this.hunger >= 5) {
+      counter++;
+    }
+    if (this.droppings >= 3) {
+      counter++;
+    }
+    if (counter >= 2){
+      this.sick = true;
+      if(counter==3)
+      {
+        this.die();
+      }
     }
   }
+
+  giveMedicine() {
+    this.sick = false;
+  }
+
+  cleanPoops() {
+      this.droppings = 0;
+  }
+
+  die() {
+    this.dead = true;
+    $('#tamagotchiHome').hide();
+    $('#deadRow').show();
+    $('#isDead').text(`${this.name} has died. Next time, make sure you take better care of it.`);
+  }
+
+
 
 }

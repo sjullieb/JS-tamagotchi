@@ -1,9 +1,9 @@
 
 ## Specifications
 
-* user can choose name of tamagotchi and start the game
+* user can choose name of tamagotchi and birthdate start the game
 
-* tamagotchi gender, birthdate is automatically assigned
+<!-- * tamagotchi gender, birthdate is automatically assigned -->
 
 * life cycle timer begins at start of game
 
@@ -61,7 +61,7 @@
 
 * when droppings are left behind by tamagotchi, user should clean them up right away
 
-* tamagotchi can become sick when it reaches six sickness points.  each uncleaned dropping is 1 points.  having hunger level reach 0 is 2 points.  having a sleepless night is two points, each additional snack over the 3 per day is one point;
+* tamagotchi can become sick when it reaches six sickness points.  each uncleaned dropping is 1 points.  having hunger level reach 5 is 2 points.  having a sleepless night is two points, each additional snack over the 3 per day is one point;
 
 * same rules apply for dealing with sick tamagotchi
 

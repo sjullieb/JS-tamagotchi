@@ -48,7 +48,7 @@ describe('Tamagotchi', function() {
     expect(tamagotchi.lifeCycleIndex).toEqual(1);
   });
 
-  it("should check if it is datetime", function(){
+  it("should check if it is daytime", function(){
     jasmine.clock().tick((dayDuration + nightDuration + 1) * 10000 + 1);
     expect(tamagotchi.isDaytime()).toEqual(true);
   });
@@ -76,5 +76,38 @@ describe('Tamagotchi', function() {
   //  tamagotchi.increaseTiredness();
     jasmine.clock().tick(((dayDuration + nightDuration) / 5 + 1) * 10000 + 1);
     expect(tamagotchi.tiredness).toEqual(1);
+  });
+
+  it('should reset tiredness to zero after sleeping', function() {
+    jasmine.clock().tick(((dayDuration + nightDuration) / 5 + 1) * 10000 + 1);
+    tamagotchi.sleep();
+    expect(tamagotchi.tiredness).toEqual(0);
+  });
+
+  it('should get sick when two sickness conditions are true', function() {
+    expect(tamagotchi.sick).toEqual(false);
+    tamagotchi.tiredness = 5;
+    tamagotchi.hunger = 5;
+    tamagotchi.getSick();
+    expect(tamagotchi.sick).toEqual(true);
+  });
+  it('should cure tamagotchi when give medicine button is pressed', function(){
+    tamagotchi.tiredness = 5;
+    tamagotchi.hunger = 5;
+    tamagotchi.getSick();
+    expect(tamagotchi.sick).toEqual(true);
+    tamagotchi.giveMedicine();
+    expect(tamagotchi.sick).toEqual(false);
+  });
+
+  it('should clean up poops', function(){
+    tamagotchi.poops = 1;
+    tamagotchi.cleanPoops();
+    expect(tamagotchi.poops).toEqual(0);
+  });
+
+  it('should know if tamagotchi is dead', function(){
+    tamagotchi.die();
+    expect(tamagotchi.dead).toEqual(true);
   });
 });
